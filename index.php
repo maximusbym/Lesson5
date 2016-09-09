@@ -1,14 +1,6 @@
 <?php
 
-$arr = [1,2,3];
-$arr2 = [0,4,5];
-
-$twoArrays = array_merge($arr, $arr2);
-
-var_dump($twoArrays);
-
-exit();
-
+// Наши данные, модель
 $messages = array(
   0 => array(
     'sender' => 'max',
@@ -27,52 +19,66 @@ $messages = array(
   )
 );
 
+// Очистка данных
 function dataSanitize( $array ) {
 		
+	// принимаем значенния элементов по ссылке, они изменяться в передаваемом массиве
 	foreach($array as $key => &$val) {
 		
 		$val['message'] = str_replace('<br/>', PHP_EOL, $val['message']);
 		$val['message'] = ucfirst( trim( strip_tags($val['message'])));
 
+		// Делает очистку тоже, по примеру strip_tags
 		//$val['message'] = filter_var( $val['message'], FILTER_SANITIZE_STRING );
 		
+		// Можно и так изменять данные в массиве с глобальной области видимости
 		//$array[$key]['message'] = str_replace('<br/>', PHP_EOL, $val['message']);
 	}
 	
 	return $array;
 }
 
+// Сохраненние данных
 function saveData( $data ) {
 
+	// проверяем существует ли директория
 	if( !file_exists('database') ) {
+		// если нет, создаем
 		mkdir('database');
 	}
-	file_put_contents('database/database.txt', serialize($data));
+	// сохраняем данные массива, зашифрованные в строку
+	$res = file_put_contents('database/database.txt', serialize($data));
 	
-	return;
+	// возвращаем результат сохраненния
+	return $res;
 }
 
+// Вычитка данных
 function readData( $path ) {
+	// считываем данные по полученному пути
 	$tmp = file_get_contents($path);
+	// расшифровываем данные со строки в массив
 	$messages = unserialize($tmp);
+	// возвращаем массив
 	return $messages;
 }
 
+// Измененние в тексте перед выводом
 function textChange( $array ) {
+	// изменяем элементы массива как нам нужно
 	foreach($array as $key => &$val) {
 		$val['message'] = nl2br($val['message']);
 	}	
 	return $array;
 }
 
+// Бизнес логика приложения
 $messages = dataSanitize($messages);
 saveData($messages);
-
-
 $newMessages = readData('database/database.txt');
 $newMessages = textChange($newMessages);
 
-
+// Вывод результатов
 include "view.php";
 
 
