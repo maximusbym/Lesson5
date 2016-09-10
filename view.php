@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html>
 <head></head>
@@ -7,17 +7,12 @@
 <?php
 
 foreach( $messages as $val ) {
-=======
-<?php
-
-foreach( $newMessages as $val ) {
->>>>>>> df898aa045c5da2cc9ec24124d6ffc59361f5dc6
 	echo $val['sender'].'<br/>';
 	echo $val['email'].'<br/>';
 	echo $val['message'].'<br/>';
 	echo '<hr/>';
 }
-<<<<<<< HEAD
+
 ?>
 
 <form action="/" method="POST" >
@@ -40,6 +35,3 @@ foreach( $newMessages as $val ) {
 
 </body>
 </html>
-=======
-
->>>>>>> df898aa045c5da2cc9ec24124d6ffc59361f5dc6
