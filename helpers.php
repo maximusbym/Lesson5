@@ -5,6 +5,7 @@
 // Валидация данных
 function validate( $array ) {
 
+	// принимаем значенния элементов по ссылке, они изменяться в передаваемом массиве
 	foreach($array as $key => $val) {
 	
 		// Проверяем полученное значение "имя" на длину
@@ -56,7 +57,7 @@ function saveData( $data, $path ) {
 		$allMessages = [$data];
 	}
 	else {
-		// если есть, сливаем их вместе
+		// если есть, добавляем новое сообщение в конец предыдущих
 		$allMessages = $oldMessages;
 		array_push($allMessages, $data);
 	}

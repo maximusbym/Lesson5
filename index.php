@@ -11,3 +11,4 @@ include "controller.php";
 
 // Вывод результатов юзеру
 include "view.php";
+

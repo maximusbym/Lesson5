@@ -11,7 +11,6 @@ foreach( $messages as $val ) {
 	echo $val['message'].'<br/>';
 	echo '<hr/>';
 }
-
 ?>
 
 <form action="/" method="POST" >
