@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 // Константа - путь к нашей базе сообщений
 define( "MESSAGES_TXT_PATH", 'database/database.txt');
 
