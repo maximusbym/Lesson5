@@ -1,5 +1,0 @@
-a:3:{i:0;a:3:{s:6:"sender";s:3:"max";s:5:"email";s:9:"max@xx.xx";s:7:"message";s:29:"Text text text 
-
-text  text";}i:1;a:3:{s:6:"sender";s:3:"max";s:5:"email";s:9:"max@xx.xx";s:7:"message";s:29:"Text text text 
-
-text  text";}i:2;a:3:{s:6:"sender";s:3:"max";s:5:"email";s:9:"max@xx.xx";s:7:"message";s:24:"Text text text text text";}}
