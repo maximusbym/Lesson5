@@ -2,17 +2,55 @@
 
 // Бизнес логика приложения
 
-// Если есть данные отправленные с формы, мы их сохраняем
-if( isset($_POST['form']) ) {
-	$dataForm = $_POST['form'];
-	$isValid = validate($dataForm);
-	if( $isValid ) {
-		saveData($dataForm, MESSAGES_TXT_PATH);
-	}
+//ROUTING
+if( $_SERVER['REQUEST_URI'] != '/' ) {
+    $urlArray = explode('/', $_SERVER['REQUEST_URI']);
+    $urlArray = array_filter($urlArray);
+    $action = $urlArray[1];
+    if( isset($urlArray[2]) ) {
+        $subAction = $urlArray[2];
+    }
+}
+else {
+    $action = 'main';
 }
 
-// Делаем выборку с файла, что бы показать юзеру 
-$messages = readData(MESSAGES_TXT_PATH);
-if( !empty($newMessages) ) {
-	$messages = textChange($newMessages);
+
+if( $action == 'main' ) {
+    // Если есть данные отправленные с формы, мы их сохраняем
+    if (isset($_POST['form'])) {
+        $dataForm = $_POST['form'];
+        $isValid = validate($dataForm);
+        if ($isValid) {
+            saveData($dataForm, MESSAGES_TXT_PATH);
+        }
+    }
+
+    // Делаем выборку с файла, что бы показать юзеру
+    $messages = readData(MESSAGES_TXT_PATH);
+    if (!empty($newMessages)) {
+        $messages = textChange($newMessages);
+    }
 }
+else if( $action == 'form2' ) {
+
+    if (isset($_POST['name']) && isset($_FILES['file']) ) {
+
+        $name = $_POST['name'];
+
+        copy( $_FILES['file']['tmp_name'], 'files/'.uniqid() );
+
+
+
+//        $dataForm = $_POST['form'];
+//        $isValid = validate($dataForm);
+//        if ($isValid) {
+//            saveData($dataForm, MESSAGES_TXT_PATH);
+//        }
+    }
+}
+else {
+    header("HTTP/1.1 404 Not Found");
+}
+
+include "view.controller.php";

@@ -13,7 +13,7 @@ foreach( $messages as $val ) {
 }
 ?>
 
-<form action="/" method="POST" >
+<form action="/" method="POST" enctype="multipart/form-data">
 
 	<label>Name:</label>
 	<input type="text" name="form[sender]" />
