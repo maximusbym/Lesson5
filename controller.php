@@ -49,6 +49,35 @@ else if( $action == 'form2' ) {
 //        }
     }
 }
+elseif ( $action == 'admin ') {
+
+    $login = $_POST['login'];
+    $pass = $_POST['pass'];
+
+    if ( $login && $pass &&
+        md5($_COOKIE['user_pass']) === $config['admin_pass'] &&
+        $login === $config['admin_login']
+    ) {
+
+        $_SESSION['admin_user'] = 1;
+
+        if( $_POST['remember_me'] ) {
+            setcookie("user_login", "13", time() + 30 * 24 * 3600, '/');
+            setcookie("user_password", md5("123123"), time() + 30 * 24 * 3600, '/');
+        }
+
+    }
+    else {
+        $_SESSION['admin_user'] = 0;
+    }
+
+    if( $_SESSION['admin_user'] == 1 ) {
+        include "templates/admin.main.php";
+    }
+    else {
+        include "templates/login.form.php";
+    }
+}
 else {
     header("HTTP/1.1 404 Not Found");
 }
