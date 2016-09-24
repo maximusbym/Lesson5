@@ -5,7 +5,7 @@
 
 <?php
 
-foreach( $messages as $val ) {
+foreach( $data['messages'] as $val ) {
 	echo $val['sender'].'<br/>';
 	echo $val['email'].'<br/>';
 	echo $val['message'].'<br/>';

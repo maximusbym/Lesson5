@@ -99,3 +99,9 @@ function textChange( $array ) {
 	}
 	return $array;
 }
+
+// Show view depends on $action
+function view( $viewName, $data = [] ) {
+    include "templates/header.php";
+    include "templates/{$viewName}.view.php";
+}
