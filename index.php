@@ -1,4 +1,41 @@
 <?php
+
+var_dump( $_SERVER['REQUEST_URI'] );
+
+if (strpos($_SERVER['REQUEST_URI'], 'guestbook') !== false) {
+	
+	// include "GuestBook.php";
+	
+	$arr = [
+		[
+			'name' => "Vasya",
+			'email' => 'vasya@gmail.com',
+			'message' => 'Hi!'
+		]
+	];
+	
+	var_dump( json_encode( $arr ) );
+	
+	$messages = json_decode( file_get_contents( 'db.txt' ) );
+	
+	array_unshift( $arr, $messages );
+	
+	file_put_contents( 'db.txt', json_encode( $arr ) );
+	
+	
+	
+	include "GuestBookView.php";
+	
+	foreach( $arr as $message )
+	
+}
+else {
+	
+	
+}
+
+die('bye');
+
 session_start();
 
 ////======== конфиги сайта
